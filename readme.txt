@@ -21,21 +21,6 @@ on admin node:
                 # 1> add all ceph nodes
         bash exp_ssh.sh (run at vceph)
                 # 1> generate ssh key
-                # 3> add release key, ceph packages
-                # 4> install ceph-deploy ntp openssh-server
-        bash firewall.sh ....
-                # 1> add port 6789
-on admin node:
-        config /etc/hosts (run at root)
-                # 3> add release key, ceph packages
-                # 4> install ceph-deploy ntp openssh-server
-        bash firewall.sh ....
-                # 1> add port 6789
-on admin node:
-        config /etc/hosts (run at root)
-                # 1> add all ceph nodes
-        bash exp_ssh.sh (run at vceph)
-                # 1> generate ssh key
         edit ssh_id.sh acordingly (about user@host)
         && bash ssh_id.sh (run at vceph)
                 # 1> copy ssh key from admin node to ceph nodes
