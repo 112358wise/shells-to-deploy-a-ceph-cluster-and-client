@@ -1,0 +1,54 @@
+<domain type='kvm'>
+  <name>abc_base</name>
+  <uuid>31e946ca-975b-3709-eb93-de667e16ac9f</uuid>
+  <memory>1048576</memory>
+  <currentMemory>1048576</currentMemory>
+  <vcpu>1</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-0.14'>hvm</type>
+    <boot dev='cdrom'/>
+    <boot dev='hd'/>
+    <bootmenu enable='yes'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+  </features>
+  <clock offset='localtime'/>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>restart</on_crash>
+  <devices>
+    <emulator>/usr/bin/kvm</emulator>
+    <disk type='network' device='disk'>
+      <source protocol='rbd' name='rbd/foo'>
+        <host name='{monitor_ip}' port='6789'/>
+      </source>
+      <auth username='libvirt'>
+        <secret type='ceph' uuid='{secret_uuid}'/>
+      </auth>
+      <target dev='vda' bus='virtio'/>
+    </disk>
+    <controller type='ide' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+    </controller>
+    <controller type='fdc' index='0'/>
+
+    <interface type='bridge'>
+      <mac address='fa:52:3e:37:15:c9'/>
+      <source bridge='br100'/>
+      <target dev='vnet0'/>
+      <alias name='net0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    </interface>
+    <graphics type='vnc' port='5900' autoport='yes' listen='0.0.0.0' keymap='en-us'>
+      <listen type='address' address='0.0.0.0'/>
+    </graphics>
+    <video>
+      <model type='vga' vram='9216' heads='1'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+    </video>
+  </devices>
+</domain>
+

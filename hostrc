@@ -1,0 +1,5 @@
+storage_nodes_list="vceph3 vceph4 vceph5"
+initial_monitor="vceph3"
+admin_node="vceph2"
+monitor_ip="10.239.48.46"
+ceph_user=vceph
